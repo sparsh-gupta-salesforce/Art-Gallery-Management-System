@@ -1,0 +1,30 @@
+.navigation-bar{
+    background-color: black;
+}
+
+.cart-card{
+    margin-left: auto;
+    margin-top: 5%;
+
+}
+
+.image{
+    margin: 2%;
+    margin-left: 4%;
+}
+
+.cart-cart{
+    margin-top: 2%;
+}
+
+.footer{
+    background-color: black;
+    width: 100%;
+}
+.active{
+    background-color: dodgerblue;
+    color: white;
+}
+.active:hover{
+    background-color: dodgerblue;
+}

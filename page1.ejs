@@ -1,0 +1,6 @@
+
+<h1>Buyer-id:<%= result[0].num%></h1>
+
+<% result.forEach(function(item){ %>
+ 	<li><%= item.buyer_id%>-<%=item.num %></li>
+<% }); %>

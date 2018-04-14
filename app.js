@@ -52,17 +52,34 @@ var dob  = req.body.yyyy+"-"+req.body.mm+"-"+req.body.dd;
     res.redirect('/');
 })
 
+app.get('/cart',(req,res)=>{
+    connection.query(
+        `Select user_name from user where user_id ='${loginId}'`,
+        (err,rows,cols)=>{
+            if(err || rows.length==0) {
+                console.log("Doesn't exist");
+            }
+            console.log(rows);
+             res.render('cart.ejs',{login: rows[0].user_name,loginId:loginId});
+})})
+app.get('/login',(req,res)=>{
+    connection.query(
+        `Select * from user where user_id ="${loginId}"`, (err, row, col) =>
+        {
+            login = 1 ;
+            res.render('index.ejs', {result: row, login: login});
+        }
+)})
 
 app.post('/login',(req,res)=>{
-    console.log(req.body);
     connection.query(
     `Select * from login where login_id ='${req.body.login}' AND 
 	password='${req.body.password}'`,
     (err,rows,cols)=>{
-    if(err)
-    throw err;
-    if(rows.length==0)
+    if(err || rows.length==0) {
         console.log("Doesn't exist");
+        res.redirect('/');
+    }
     else{
     console.log("LoginId exists");
 
@@ -98,7 +115,9 @@ app.get('/signout',(req,res)=>{
     loginId="";
     res.render("index.ejs",{login: login});
 })
-
+app.get('/addtocart',(req,res)=>{
+    
+})
 app.get('/showLogin',(req,res)=>{
     console.log(loginId);
     connection.query(
@@ -113,7 +132,7 @@ app.get('/orders',(req,res)=>{
     connection.query(`Select * from orders where ord_cus_id = '${loginId}'`,(err, row, col)=>{
         if(err)
             throw err;
-        res.render("page2.ejs",{result: row});
+        res.render("orders.ejs",{result: row});
     });
 })
 

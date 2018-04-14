@@ -56,15 +56,14 @@
             <a href="" class="nav-link" data-toggle="modal" data-target="#login" ><i class="fa fa-sign-in" style="color: #4fc4ff"></i>&nbsp;Log In</a>
         </li>
         <% } else { %>
-        <li>
+        <li class="ml-auto">
             <div class="btn-group">
-                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                <a class="btn" href="/cart">
                     <%= result[0].user_name %>
-                    <span class="caret"></span>
                 </a>
             </div>
         </li>
-        <li class="nav-item ml-auto">
+        <li class="nav-item">
             <a href="/signout" class="nav-link">
                 <i class="fa fa-user" style="color: #4fc4ff"></i>&nbsp;Sign Out</a>
         </li>
@@ -254,7 +253,7 @@
                         Rs  72,00,000
                     </div>
                     <div class="col button2" style="margin-bottom: 25%">
-                        <a href="#" class="btn btn-primary col">ADD TO CART</a>
+                        <a href="/addtocart" class="btn btn-primary col">ADD TO CART</a>
                     </div>
                 </div>
             </div>
@@ -270,7 +269,7 @@
                         Rs  28,00,000
                     </div>
                     <div class="col button2" style="margin-bottom: 25%">
-                        <a href="#" class="btn btn-primary col">ADD TO CART</a>
+                        <a href="/addtocart" class="btn btn-primary col">ADD TO CART</a>
                     </div>
                 </div>
             </div>
@@ -286,7 +285,7 @@
                         Rs  92,00,000
                     </div>
                     <div class="col button2" style="margin-bottom: 25%">
-                        <a href="#" class="btn btn-primary col">ADD TO CART</a>
+                        <a href="/addtocart" class="btn btn-primary col">ADD TO CART</a>
                     </div>
                 </div>
             </div>
@@ -422,7 +421,7 @@
                             <p class="card-text"></p>
                             <div class="row">
                                 <h6 class="col">RS 80,000</h6>
-                                <a href="#" class="btn btn-primary col">ADD TO CART</a>
+                                <a href="/addtocart" class="btn btn-primary col">ADD TO CART</a>
                             </div>
                         </div>
                     </div>
@@ -436,7 +435,7 @@
                             <p class="card-text"></p>
                             <div class="row">
                                 <h6 class="col">RS 44,000</h6>`
-                                <a href="#" class="btn btn-primary col">ADD TO CART</a>
+                                <a href="/addtocart" class="btn btn-primary col">ADD TO CART</a>
                             </div>
                         </div>
                     </div>
@@ -450,7 +449,7 @@
                             <p class="card-text"></p>
                             <div class="row">
                                 <h6 class="col">RS 62,000</h6>
-                                <a href="#" class="btn btn-primary col">ADD TO CART</a>
+                                <a href="/addtocart" class="btn btn-primary col">ADD TO CART</a>
                             </div>
                         </div>
                     </div>
@@ -467,7 +466,7 @@
                       <a name="two"><h4 class="card-title">VINCENT</h4></a>
                         <div class="row">
                             <h6 class="col">Rs 80,000</h6>
-                            <a href="#" class="btn btn-primary col">ADD TO CART</a>
+                            <a href="/addtocart" class="btn btn-primary col">ADD TO CART</a>
                         </div>
                     </div>
                 </div>
@@ -478,7 +477,7 @@
                         <h4 class="card-title">DISASTER</h4>
                         <div class="row">
                             <h6 class="col">Rs 25,000</h6>
-                            <a href="#" class="btn btn-primary col">ADD TO CART</a>
+                            <a href="/addtocart" class="btn btn-primary col">ADD TO CART</a>
                         </div>
                     </div>
                 </div>
@@ -489,7 +488,7 @@
                         <h4 class="card-title">TURQUOISE</h4>
                         <div class="row">
                             <h6 class="col">3,15,000</h6>
-                            <a href="#" class="btn btn-primary col">ADD TO CART</a>
+                            <a href="/addtocart" class="btn btn-primary col">ADD TO CART</a>
                         </div>
                     </div>
                 </div>
@@ -506,7 +505,7 @@
                         <a name="three"><h4 class="card-title">SCREAM</h4></a>
                         <div class="row">
                             <h6 class="col">Rs 44,000</h6>
-                            <a href="#" class="btn btn-primary col">ADD TO CART</a>
+                            <a href="/addtocart" class="btn btn-primary col">ADD TO CART</a>
                         </div>
                     </div>
                 </div>
@@ -517,7 +516,7 @@
                         <h4 class="card-title">PICASA</h4>
                         <div class="row">
                             <h6 class="col">Rs 65,000</h6>
-                            <a href="#" class="btn btn-primary col">ADD TO CART</a>
+                            <a href="/addtocart" class="btn btn-primary col">ADD TO CART</a>
                         </div>
                     </div>
                 </div>
@@ -528,7 +527,7 @@
                         <h4 class="card-title">THREE-MUSICIANS</h4>
                         <div class="row">
                             <h6 class="col">Rs 4,27,000</h6>
-                            <a href="#" class="btn btn-primary col">ADD TO CART</a>
+                            <a href="/addtocart" class="btn btn-primary col">ADD TO CART</a>
                         </div>
                     </div>
                 </div>
@@ -545,7 +544,7 @@
                        <a name="four"><h4 class="card-title">AMAZON</h4></a>
                         <div class="row">
                             <h6 class="col">Rs 83,000</h6>
-                            <a href="#" class="btn btn-primary col">ADD TO CART</a>
+                            <a href="/addtocart" class="btn btn-primary col">ADD TO CART</a>
                         </div>
                     </div>
                 </div>
@@ -556,7 +555,7 @@
                         <h4 class="card-title">RANDOM</h4>
                         <div class="row">
                             <h6 class="col">Rs 64,000</h6>
-                            <a href="#" class="btn btn-primary col">ADD TO CART</a>
+                            <a href="/addtocart" class="btn btn-primary col">ADD TO CART</a>
                         </div>
                     </div>
                 </div>
@@ -567,7 +566,7 @@
                         <h4 class="card-title">PICHWAIS</h4>
                         <div class="row">
                             <h6 class="col">Rs 37,000</h6>
-                            <a href="#" class="btn btn-primary col">ADD TO CART</a>
+                            <a href="/addtocart" class="btn btn-primary col">ADD TO CART</a>
                         </div>
                     </div>
                 </div>
@@ -584,7 +583,7 @@
                        <a name="five"><h4 class="card-title">LANDSCAPE</h4></a>
                         <div class="row">
                             <h6 class="col">Rs 74,000</h6>
-                            <a href="#" class="btn btn-primary col">ADD TO CART</a>
+                            <a href="/addtocart" class="btn btn-primary col">ADD TO CART</a>
                         </div>
                     </div>
                 </div>
@@ -595,7 +594,7 @@
                         <h4 class="card-title">FALSE-START</h4>
                         <div class="row">
                             <h6 class="col">RS 96,000</h6>
-                            <a href="#" class="btn btn-primary col">ADD TO CART</a>
+                            <a href="/addtocart" class="btn btn-primary col">ADD TO CART</a>
                         </div>
                     </div>
                 </div>
@@ -606,7 +605,7 @@
                         <h4 class="card-title">ADELE</h4>
                         <div class="row">
                             <h6 class="col">Rs 6,00,000</h6>
-                            <a href="#" class="btn btn-primary col">ADD TO CART</a>
+                            <a href="/addtocart" class="btn btn-primary col">ADD TO CART</a>
                         </div>
                     </div>
                 </div>
@@ -623,7 +622,7 @@
                         <p class="card-text"></p>
                         <div class="row">
                             <h6 class="col">RS 1,20,000</h6>
-                            <a href="#" class="btn btn-primary col">ADD TO CART</a>
+                            <a href="/addtocart" class="btn btn-primary col">ADD TO CART</a>
                         </div>
                     </div>
                 </div>
@@ -636,7 +635,7 @@
                         <p class="card-text"></p>
                         <div class="row">
                             <h6 class="col">RS 1,20,000</h6>
-                            <a href="#" class="btn btn-primary col">ADD TO CART</a>
+                            <a href="/addtocart" class="btn btn-primary col">ADD TO CART</a>
                         </div>
                     </div>
                 </div>
@@ -648,7 +647,7 @@
                         <p class="card-text"></p>
                         <div class="row">
                             <h6 class="col">RS 1,20,000</h6>
-                            <a href="#" class="btn btn-primary col">ADD TO CART</a>
+                            <a href="/addtocart" class="btn btn-primary col">ADD TO CART</a>
                         </div>
                     </div>
                 </div>
