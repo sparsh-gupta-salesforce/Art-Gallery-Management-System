@@ -53,6 +53,7 @@ var dob  = req.body.yyyy+"-"+req.body.mm+"-"+req.body.dd;
 })
 
 app.get('/cart',(req,res)=>{
+    var log = "";
     connection.query(
         `Select user_name from user where user_id ='${loginId}'`,
         (err,rows,cols)=>{
@@ -60,7 +61,15 @@ app.get('/cart',(req,res)=>{
                 console.log("Doesn't exist");
             }
             console.log(rows);
-             res.render('cart.ejs',{login: rows[0].user_name,loginId:loginId});
+            log = rows[0].user_name;})
+    connection.query(
+        `Select arts.title,arts.author,arts.price,arts.link,cart.no_of_items from cart,arts where user_id = '${loginId}' AND cart.arts_id = arts.arts_id`,
+        (err,rows,cols)=>{
+            if(err || rows.length==0) {
+                console.log("Doesn't exist");
+            }
+            console.log(rows);
+            res.render('cart.ejs',{login: log,loginId: loginId,result: rows});
 })})
 app.get('/login',(req,res)=>{
     connection.query(
@@ -116,7 +125,14 @@ app.get('/signout',(req,res)=>{
     res.render("index.ejs",{login: login});
 })
 app.get('/addtocart',(req,res)=>{
-    
+    connection.query(
+        `insert into cart values('${req.body.uname}','${name}','${req.body.email}',${req.body.phone},'${dob}')`,
+        (err,rows,cols)=>{
+            if(err)
+                throw err;
+            console.log("Successfully added to customers");
+        }
+    )
 })
 app.get('/showLogin',(req,res)=>{
     console.log(loginId);
@@ -129,12 +145,14 @@ app.get('/showLogin',(req,res)=>{
         })})
 
 app.get('/orders',(req,res)=>{
-    connection.query(`Select * from orders where ord_cus_id = '${loginId}'`,(err, row, col)=>{
+    var obj=[];
+    connection.query(`Select arts.title,arts.author,arts.price,arts.link,arts.no_of_paint from orders,arts where order_cus_id = '${loginId}' AND orders.arts_id = arts.arts_id`,(err, row, col)=>{
         if(err)
             throw err;
         res.render("orders.ejs",{result: row});
-    });
-})
+    })
+
+});
 
 app.listen(8000,function(){
     console.log("Server started at port 8000");

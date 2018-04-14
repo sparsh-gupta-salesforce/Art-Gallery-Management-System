@@ -60,7 +60,7 @@
                         <p><small>Login-id</small></p>
                     </div>
                 </div>
-                <a  style="cursor: pointer;color: black;text-decoration: none" href="cart.ejs">
+                <a  style="cursor: pointer;color: black;text-decoration: none" href="/cart">
                     <hr>
                     <div class="image">
                         <h3><span class="glyphicon glyphicon-shopping-cart"></span> &nbsp;My Cart</h3>
@@ -99,9 +99,7 @@
                                     <h5><span class="glyphicon glyphicon-list-alt"></span> My Orders</h5>
                                 </div>
                                 <div class="col-lg-6">
-                                    <button type="button" class="btn btn-primary btn-sm btn-block" onclick="function () {
-                                  location.href="index.ejs";
-                                    }
+                                    <button type="button" class="btn btn-primary btn-sm btn-block">
                                     <span class="glyphicon glyphicon-share-alt"></span> Continue shopping
                                     </button>
                                 </div>
@@ -109,41 +107,27 @@
                         </div>
                     </div>
                     <div class="panel-body">
+                        <% result.forEach(function(item){ %>
                         <div class="row">
                             <div class="col-lg-2">
-                                <img class="img-responsive" src="images/Massacre-of-the-Innocents-by-Peter-Paul-Rubens-1638.jpg">
+                                <img class="img-responsive" src="<%= item.link %>">
                             </div>
                             <div class="col-lg-4">
-                                <h4 class="product-name"><strong>Massacre</strong></h4>
-                                <h4><small>Author</small></h4>
+                                <h4 class="product-name"><strong><%= item.title %></strong></h4>
+                                <h4><small><%= item.author %></small></h4>
                             </div>
                             <div class="col-lg-6">
                                 <div class="col-lg-6 text-right">
-                                    <h6><strong>Rs 12500 <span class="text-muted">x</span></strong></h6>
+                                    <h6><strong>Rs <%= item.price %> <span class="text-muted">x</span></strong></h6>
                                 </div>
                                 <div class="col-lg-4">
-                                    <input type="text" class="form-control input-sm" value="2" disabled>
+                                    <input type="text" class="form-control input-sm" value="<%= item.no_of_paint %>" disabled>
                                 </div>
 
                             </div>
                         </div>
                         <hr>
-                        <div class="row">
-                            <div class="col-lg-2"><img class="img-responsive" src="images/il_fullxfull.444071442_tbvg.jpg">
-                            </div>
-                            <div class="col-lg-4">
-                                <h4 class="product-name"><strong>TURQUOISE</strong></h4><h4><small>Author</small></h4>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="col-lg-6 text-right">
-                                    <h6><strong>Rs 25000 <span class="text-muted">x</span></strong></h6>
-                                </div>
-                                <div class="col-lg-4">
-                                    <input type="text" class="form-control input-sm" value="1" disabled>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
+                        <% })%>
                     </div>
                 </div>
             </div>
