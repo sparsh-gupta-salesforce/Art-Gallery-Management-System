@@ -38,10 +38,10 @@
             <a class="nav-link" href="#">CONTACT US</a>
         </li>
         <li class="nav-item pull-right">
-            <a class="nav-link" style="margin-left: " href="#">Sign out</a>
+            <a class="nav-link" style="margin-left: " href="/signout">Sign out</a>
         </li>
         <li class="nav-item pull-right">
-            <a href="" class="nav-link active"><i class="fa fa-user" style="color: #4fc4ff"></i>&nbsp;Name</a>
+            <a href="" class="nav-link active"><i class="fa fa-user" style="color: #4fc4ff"></i>&nbsp;<%= login %></a>
         </li>
 
     </ul>
@@ -54,10 +54,10 @@
         <div class="card cart-card" style="width: 60%;" >
             <div class="card-body">
                 <div style="display: flex;background-color: lightblue;border-radius: 5%">
-                    <img class="image" src="images/vaibhav.jpg" style="width: 100px;height: 100px;border-radius: 50%">
+                    <img class="image" src="<%= link %>" style="width: 100px;height: 100px;border-radius: 50%">
                     <div style="margin-left: 10%">
-                        <h3>Name</h3>
-                        <p><small>Login-id</small></p>
+                        <h3><%= login %></h3>
+                        <p><small><%= loginId %></small></p>
                     </div>
                 </div>
                 <a  style="cursor: pointer;color: black;text-decoration: none" href="/cart">
@@ -81,7 +81,7 @@
                 </div>
                 <div class="pull-right">
                     <a href="#" class="btn" style="border-color: #4fc4ff;border: solid">Edit Profile</a>
-                    <a href="#" class="btn btn-primary">Sign Out</a>
+                    <a href="/signout" class="btn btn-primary">Sign Out</a>
                     <br><br>
                 </div>
             </div>

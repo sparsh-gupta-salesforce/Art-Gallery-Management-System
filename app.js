@@ -54,14 +54,16 @@ var dob  = req.body.yyyy+"-"+req.body.mm+"-"+req.body.dd;
 
 app.get('/cart',(req,res)=>{
     var log = "";
+    var link = "";
     connection.query(
-        `Select user_name from user where user_id ='${loginId}'`,
+        `Select user_name,link from user where user_id ='${loginId}'`,
         (err,rows,cols)=>{
             if(err || rows.length==0) {
                 console.log("Doesn't exist");
             }
             console.log(rows);
-            log = rows[0].user_name;})
+            log = rows[0].user_name;
+            link = rows[0].link});
     connection.query(
         `Select arts.title,arts.author,arts.price,arts.link,cart.no_of_items from cart,arts where user_id = '${loginId}' AND cart.arts_id = arts.arts_id`,
         (err,rows,cols)=>{
@@ -69,7 +71,7 @@ app.get('/cart',(req,res)=>{
                 console.log("Doesn't exist");
             }
             console.log(rows);
-            res.render('cart.ejs',{login: log,loginId: loginId,result: rows});
+            res.render('cart.ejs',{link:link,login: log,loginId: loginId,result: rows});
 })})
 app.get('/login',(req,res)=>{
     connection.query(
@@ -125,12 +127,13 @@ app.get('/signout',(req,res)=>{
     res.render("index.ejs",{login: login});
 })
 app.get('/addtocart',(req,res)=>{
+
     connection.query(
-        `insert into cart values('${req.body.uname}','${name}','${req.body.email}',${req.body.phone},'${dob}')`,
+        `select * from cart where `,
         (err,rows,cols)=>{
             if(err)
                 throw err;
-            console.log("Successfully added to customers");
+            console.log("Successfully added to cart");
         }
     )
 })
@@ -145,11 +148,22 @@ app.get('/showLogin',(req,res)=>{
         })})
 
 app.get('/orders',(req,res)=>{
-    var obj=[];
+    var log = "";
+    var link = "";
+    connection.query(
+        `Select user_name,link from user where user_id ='${loginId}'`,
+        (err,rows,cols)=>{
+            if(err || rows.length==0) {
+                console.log("Doesn't exist");
+            }
+            log = rows[0].user_name;
+        link = rows[0].link;
+        console.log(link);
+        })
     connection.query(`Select arts.title,arts.author,arts.price,arts.link,arts.no_of_paint from orders,arts where order_cus_id = '${loginId}' AND orders.arts_id = arts.arts_id`,(err, row, col)=>{
         if(err)
             throw err;
-        res.render("orders.ejs",{result: row});
+        res.render("orders.ejs",{link:link,result: row,login:log,loginId:loginId});
     })
 
 });

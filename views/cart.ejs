@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 </head>
 <body>
-
+<% var amount = 0;%>
 <div class="navigation-bar sticky-top">
 
     <ul class="nav nav-pills">
@@ -54,7 +54,7 @@
         <div class="card cart-card" style="width: 60%;" >
             <div class="card-body">
                 <div style="display: flex;background-color: lightblue;border-radius: 5%">
-                    <img class="image" src="images/vaibhav.jpg" style="width: 100px;height: 100px;border-radius: 50%">
+                    <img class="image" src="<%= link %>" style="width: 100px;height: 100px;border-radius: 50%">
                     <div style="margin-left: 10%">
                         <h3><%= login %></h3>
                         <p><small><%= loginId %></small></p>
@@ -108,6 +108,7 @@
                     </div>
                     <div class="panel-body">
                         <% result.forEach(function(item){ %>
+                        <% amount+=item.price*item.no_of_items; %>
                         <div class="row">
                             <div class="col-lg-2">
                                 <img class="img-responsive" src="<%= item.link %>">
@@ -133,7 +134,7 @@
                     <div class="panel-footer">
                         <div class="row text-center">
                             <div class="col-lg-9">
-                                <h4 class="text-right">Total <strong>Rs 50000</strong></h4>
+                                <h4 class="text-right">Total <strong>Rs <%= amount %></strong></h4>
                             </div>
                             <div class="col-lg-3">
                                 <button type="button" class="btn btn-success btn-block">
