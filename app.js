@@ -34,7 +34,7 @@ app.post('/add',(req,res)=>{
 var name = req.body.fname +" "+ req.body.lname;
 var dob  = req.body.yyyy+"-"+req.body.mm+"-"+req.body.dd;
     connection.query(
-    `insert into user values('${req.body.uname}','${name}','${req.body.email}',${req.body.phone},'${dob}')`,
+    `insert into user values('${req.body.uname}','${name}','${req.body.email}',${req.body.phone},'${dob}','NULL')`,
     (err,rows,cols)=>{
     if(err)
     throw err;
@@ -65,7 +65,7 @@ app.get('/cart',(req,res)=>{
             log = rows[0].user_name;
             link = rows[0].link});
     connection.query(
-        `Select arts.title,arts.author,arts.price,arts.link,cart.no_of_items from cart,arts where user_id = '${loginId}' AND cart.arts_id = arts.arts_id`,
+        `Select arts.arts_id,arts.title,arts.author,arts.price,arts.link,cart.no_of_items from cart,arts where user_id = '${loginId}' AND cart.arts_id = arts.arts_id`,
         (err,rows,cols)=>{
             if(err || rows.length==0) {
                 console.log("Doesn't exist");
@@ -148,8 +148,7 @@ app.get('/showLogin',(req,res)=>{
         })})
 
 app.get('/orders',(req,res)=>{
-    var log = "";
-    var link = "";
+
     connection.query(
         `Select user_name,link from user where user_id ='${loginId}'`,
         (err,rows,cols)=>{
@@ -160,14 +159,43 @@ app.get('/orders',(req,res)=>{
         link = rows[0].link;
         console.log(link);
         })
-    connection.query(`Select arts.title,arts.author,arts.price,arts.link,arts.no_of_paint from orders,arts where order_cus_id = '${loginId}' AND orders.arts_id = arts.arts_id`,(err, row, col)=>{
+    connection.query(`Select arts.arts_id,arts.title,arts.author,arts.price,arts.link,arts.no_of_paint from orders,arts where order_cus_id = '${loginId}' AND orders.arts_id = arts.arts_id`,(err, row, col)=>{
         if(err)
             throw err;
         res.render("orders.ejs",{link:link,result: row,login:log,loginId:loginId});
     })
 
 });
+app.get('/profile',(req,res)=>{
+    var result={};
+    connection.query(
+        `Select user_name,user_email,user_dob,user_id,link,password from user,login where user_id ='${loginId}' AND login_id = user_id`,
+        (err,rows,cols)=>{
+            if(err || rows.length==0) {
+                console.log("Doesn't exist");
+            }
+            console.log(rows);
+            res.render('profile.ejs',{result: rows});
+        });
 
+})
+app.use('/delete/:id',(req,res)=> {
+    console.log(req.params.id);
+    connection.query(`delete from cart where user_id='${loginId}' AND arts_id='${req.params.id}'`,(err,rows,cols)=>{
+        if(err)
+            throw err;
+        res.redirect('/cart');
+    })
+})
+app.get('/deactivate',(req,res)=>{
+    connection.query(`delete from user where user_id='${loginId}'`,(err,rows,cols)=>{
+        if(err)
+            throw err;
+        login=0;
+        loginId="";
+        res.render('index.ejs',{login:login});
+    })
+})
 app.listen(8000,function(){
     console.log("Server started at port 8000");
 })
